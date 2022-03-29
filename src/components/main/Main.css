@@ -1,0 +1,193 @@
+/* all */
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+	content: "";
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* главный */
+
+.main {
+	width: 765px;
+	margin: 0 auto;
+}
+
+/* заголовки столбцов */
+
+.finance-currency-table__table {
+	margin: 7px 0 12px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 25px;
+	font-weight: 500;
+	line-height: 40px;
+}
+
+.finance-currency-table__tr {
+	display: flex;
+	transition: background-color .2s cubic-bezier(.4, 0, .2, 1);
+	text-decoration: none;
+}
+
+.finance-currency-table__th {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 15px 0;
+	border-bottom: 1px solid #f3f4f7;
+	font-family: Roboto, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	line-height: 15px;
+	color: #8d96b2;
+}
+
+
+.finance-currency-table__th--code {
+	width: 55px;
+	padding: 15px 5px 15px 10px;
+}
+
+.finance-currency-table__th--denomination {
+	width: 71px;
+	padding-right: 5px;
+}
+
+.finance-currency-table__th--currency {
+	width: 194px;
+	padding-right: 30px;
+}
+
+.finance-currency-table__th--value {
+	width: 146px;
+	text-align: center;
+}
+
+.finance-currency-table__th--change {
+	width: 146px;
+	text-align: center;
+}
+
+.finance-currency-table__th--percent {
+	width: 146px;
+	padding-left: 70px;
+	text-align: center;
+}
+
+/* элементы li */
+
+
+.finance-currency-table__cell {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding-top: 15px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid #f3f4f7;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 15px;
+}
+
+.finance-currency-table__cell--code {
+	width: 55px;
+	padding-left: 10px;
+	line-height: 15px;
+	color: #8d96b2;
+	text-transform: uppercase;
+}
+
+.finance-currency-table__cell--denomination {
+	width: 71px;
+	padding-left: 10px;
+	color: #8d96b2;
+}
+
+.finance-currency-table__cell--currency {
+	width: 219px;
+	font-family: 'Roboto Slab', serif;
+	font-weight: 500;
+	color: #414553;
+	text-align: left;
+	font-weight: 400;
+}
+
+.finance-currency-table__cell--value {
+	width: 80px;
+	text-align: right;
+	color: #262626;
+	font-weight: 00;
+}
+
+.finance-currency-table__cell--change {
+	width: 160px;
+	font-family: 'Roboto Slab', serif;
+	font-weight: normal;
+	padding-left: 94px;
+	font-size: 14px;
+}
+
+.finance-currency-table__cell--percent {
+	width: 192px;
+	font-family: 'Roboto Slab', serif;
+	font-weight: 400;
+	padding-left: 95px;
+	font-size: 14px;
+}
+
+.cbr {
+	display: block;
+	margin: 40px auto;
+	font-family: 'Roboto Slab', serif;
+	text-decoration: none;
+	font-size: 22px;
+	color: #262626;
+}
+
+.up {
+	color: #28bc00;
+}
+
+.down {
+	color: #ff564e;
+}
