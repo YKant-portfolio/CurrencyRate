@@ -19,39 +19,37 @@ class Service {
 	}
 
 	getCurrencyRate = async () => {
-		const res = await this.getResource(`https://www.cbr-xml-daily.ru/daily_json.js`);
+		const today = this.getYesterdayDay(0);
+		const res = await this.getResource(`https://www.cbr-xml-daily.ru/archive/${today}/daily_json.js`);
 		return this._intoAnArray(res);
 	}
 
 	getYesterdayDay = (day) => {
 		const today = new Date();
 		today.setDate(today.getDate() - day);
+		if (today.getDay() === 0) {
+			const yesterday = `${today.getFullYear()}/${('0' + (today.getMonth() + 1)).slice(-2)}/${('0' + (today.getDate())).slice(-2) - 1}`;
+			return yesterday;
+		}
 		const yesterday = `${today.getFullYear()}/${('0' + (today.getMonth() + 1)).slice(-2)}/${('0' + (today.getDate())).slice(-2)}`;
-		console.log(yesterday);
 		return yesterday;
 	}
 
-	getYesterdayCurrencyRate = async () => {
-		let statistic = [];
-		try {
-			for (let i = 2; i < 8; i++) {
-				const yesterday = this.getYesterdayDay(i);
-				const res = await this.getResource(`https://www.cbr-xml-daily.ru/archive/${yesterday}/daily_json.js`);
-				statistic.push(res)
-			}
-		} catch (error) {
-			alert('Курс ЦБ РФ на данную дату не установлен.')
+	getYesterdayCurrencyRate = async (code) => {
+		let statistics = [];
+		for (let i = 3; i < 9; i++) {
+			const yesterday = this.getYesterdayDay(i);
+			const res = await this.getResource(`https://www.cbr-xml-daily.ru/archive/${yesterday}/daily_json.js`, yesterday);
+			statistics.push(this._transformStatistics(res, code))
 		}
-		return statistic;
+		return statistics;
 	}
 
-
-
-
-	_transformStatistic = (elem) => {
+	_transformStatistics = (elem, code) => {
 		return {
-			value: elem.Value,
-			previous: elem.Previous
+			date: elem.Date,
+			value: elem.Valute[code].Value,
+			previous: elem.Valute[code].Previous,
 		}
 	}
 

@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { Link } from "react-router-dom";
+
 import Service from '../../services/Service';
 
 import './Main.css';
@@ -6,8 +8,6 @@ import './Main.css';
 class Main extends Component {
 	state = {
 		currencyRate: [],
-		oldValues: [],
-		error: false,
 	}
 
 	service = new Service();
@@ -16,22 +16,17 @@ class Main extends Component {
 		this.service.getCurrencyRate()
 			.then(this.onCurrencyRate)
 			.catch(this.onError);
-		this.service.getYesterdayCurrencyRate()
-			.then(this.onYesterdayCurrencyRate);
 	}
+
+	componentWillUnmount() {
+		console.log('componentWillUnmount');
+	}
+
 
 	onCurrencyRate = (currencyRate) => {
 		this.setState({
 			currencyRate,
 		});
-	}
-
-	onYesterdayCurrencyRate = (yesterdayValue) => {
-		// this.setState({
-		// 	yesterdayValue,
-		// });
-		console.log(yesterdayValue);
-
 	}
 
 
@@ -43,7 +38,8 @@ class Main extends Component {
 			const percentStyle = changes > 0 ? 'up' : 'down';
 
 			return (
-				<a key={item.id} className="finance-currency-table__tr" title={item.name} href="/currencies/AMD/">
+				<Link to="/graph" key={item.id} className="finance-currency-table__tr" title={item.name}
+					onClick={() => this.props.onCodeSelected(item.charCode, item.value.toFixed(2))}>
 					<div className="finance-currency-table__cell finance-currency-table__cell--code">
 						{item.charCode}
 					</div>
@@ -62,7 +58,7 @@ class Main extends Component {
 					<div className={`finance-currency-table__cell finance-currency-table__cell--percent finance-currency-table__cell--down ${percentStyle} `}>
 						{percent > 0 ? `+ ${percent} ` : percent}
 					</div>
-				</a >
+				</Link >
 			)
 		});
 		return (
@@ -72,10 +68,8 @@ class Main extends Component {
 		)
 	}
 
-
 	render() {
 		const { currencyRate } = this.state;
-		// const result = currencyRate.map((item, index) => ({ ...item, ...oldValues[index] }));
 		const items = this.renderLi(currencyRate);
 
 		return (

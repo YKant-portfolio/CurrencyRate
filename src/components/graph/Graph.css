@@ -1,0 +1,8 @@
+.graph {
+	max-width: 1040px;
+	margin: 100px auto;
+}
+
+.graph canvas {
+	margin-bottom: 50px;
+}
